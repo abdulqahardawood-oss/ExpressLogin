@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import { users } from "./data.js";
 import { loginUsers } from "./loginData.js";
+import { checkAuth } from "./middlewares/checkAuth.js";
+import { validateUser } from "./middlewares/validateUser.js";
+import authRoutes from "./routes/auth.route.js"
+import studentsRoutes from './routes/students.route.js'
 
 dotenv.config();
 
@@ -9,10 +13,13 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+
 // ==================== GLOBAL MIDDLEWARE ====================
 
 // Parse JSON request bodies
 app.use(express.json());
+app.use("/auth", authRoutes)
+app.use("/students", studentsRoutes)
 
 // Logger middleware
 const logger = (req, res, next) => {
@@ -21,69 +28,6 @@ const logger = (req, res, next) => {
 };
 
 app.use(logger);
-
-
-// ==================== AUTH MIDDLEWARE ====================
-
-const checkAuth = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({
-      message: "Authorization header is missing",
-    });
-  }
-
-  // Authentication logic goes here
-
-  next();
-};
-
-
-// ==================== TESTING MIDDLEWARE ====================
-
-const testingMiddleware = (req, res, next) => {
-  console.log("Testing middleware executed");
-  next();
-};
-
-
-// ==================== VALIDATION MIDDLEWARE ====================
-
-const validateUser = (req, res, next) => {
-  const {
-    firstName,
-    secondName,
-    email,
-    phoneNumber,
-  } = req.body;
-
-  if (!firstName) {
-    return res.status(400).json({
-      message: "First name is required",
-    });
-  }
-
-  if (!secondName) {
-    return res.status(400).json({
-      message: "Second name is required",
-    });
-  }
-
-  if (!email) {
-    return res.status(400).json({
-      message: "Email is required",
-    });
-  }
-
-  if (!phoneNumber) {
-    return res.status(400).json({
-      message: "Phone number is required",
-    });
-  }
-
-  next();
-};
 
 
 //  GET ALL USERS 
@@ -142,8 +86,8 @@ app.post("/register", checkAuth, validateUser, (req, res) => {
 app.get("/login-users", checkAuth, (req, res) => {
   res.status(200).json(loginUsers);
 });
-
-// Get for user login
+    
+  // Get for user login
 app.post("/users/login", checkAuth, (req, res) => {
   const { email, password } = req.body;
   const user = loginUsers.find(
@@ -173,7 +117,7 @@ app.get("/dashboard", checkAuth, (req, res) => {
 
 // TEST ROUTE 
 
-app.get("/test", testingMiddleware, (req, res) => {
+app.get("/test",  (req, res) => {
   res.status(200).json({
     message: "Test route is working",
   });
