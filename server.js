@@ -9,7 +9,7 @@ import studentsRoutes from './routes/students.route.js'
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
@@ -77,6 +77,16 @@ app.post("/register", checkAuth, validateUser, (req, res) => {
   res.status(201).json({
     message: "User created successfully",
     user: newUser,
+  });
+});
+
+// params
+app.get("/users/:name/:email/:age", (req, res) => {
+  const { name, email } = req.params;
+
+  res.json({
+    name,
+    email,
   });
 });
 

@@ -1,5 +1,7 @@
-import { students } from "../data/students.js"
+// import { students } from "../data/students.js"
+
+import { studentsgt } from "../data/students.js"
 
 export const getAllStudents = () =>{
-    return students
+    return studentsgt
 }

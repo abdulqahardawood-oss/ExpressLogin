@@ -1,72 +1,82 @@
- export const users =[
+export const users = [
   {
+    id: 1,
     firstName: "Abdulqahar",
     lastName: "Dawood",
     email: "abdulqahar@example.com",
     password: "Test@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 2,
     firstName: "Sarah",
     lastName: "Johnson",
     email: "sarah@example.com",
     password: "Sarah@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 3,
     firstName: "Michael",
     lastName: "Williams",
     email: "michael@example.com",
     password: "Michael@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 4,
     firstName: "Aisha",
     lastName: "Mohammed",
     email: "aisha@example.com",
     password: "Aisha@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 5,
     firstName: "Daniel",
     lastName: "Okafor",
     email: "daniel@example.com",
     password: "Daniel@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 6,
     firstName: "Grace",
     lastName: "Adeyemi",
     email: "grace@example.com",
     password: "Grace@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 7,
     firstName: "David",
     lastName: "Smith",
     email: "david@example.com",
     password: "David@12345",
-    role: "employer"
+    role: "employer",
   },
   {
+    id: 8,
     firstName: "Fatima",
     lastName: "Ibrahim",
     email: "fatima@example.com",
     password: "Fatima@12345",
-    role: "employer"
+    role: "employer",
   },
   {
+    id: 9,
     firstName: "James",
     lastName: "Brown",
     email: "james@example.com",
     password: "James@12345",
-    role: "candidate"
+    role: "candidate",
   },
   {
+    id: 10,
     firstName: "Mary",
     lastName: "Williams",
     email: "mary@example.com",
     password: "Mary@12345",
-    role: "candidate"
-  }
+    role: "candidate",
+  },
 ];
